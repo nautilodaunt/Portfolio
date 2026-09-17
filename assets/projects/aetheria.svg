@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" role="img" aria-label="Aetheria UI Mockup">
+  <defs>
+    <linearGradient id="bgAeth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCF6E5"/>
+      <stop offset="100%" stop-color="#F5EEDB"/>
+    </linearGradient>
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#DCD6C3" />
+    </pattern>
+  </defs>
+
+  <!-- Canvas Base -->
+  <rect width="800" height="500" fill="url(#bgAeth)" />
+  <rect width="800" height="500" fill="url(#dotGrid)" opacity="0.6" />
+  
+  <!-- Outer Window Border -->
+  <rect x="25" y="25" width="750" height="450" rx="6" fill="#FCF6E5" stroke="#DCD6C3" stroke-width="1.5"/>
+
+  <!-- Top App Bar -->
+  <line x1="25" y1="65" x2="775" y2="65" stroke="#DCD6C3" stroke-width="1" />
+  <circle cx="50" cy="45" r="4.5" fill="#DCD6C3" />
+  <circle cx="66" cy="45" r="4.5" fill="#DCD6C3" />
+  <circle cx="82" cy="45" r="4.5" fill="#DCD6C3" />
+  
+  <text x="400" y="49" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" letter-spacing="1.5" fill="#6F6A5E">AETHERIA // SPATIAL CANVAS v1.4</text>
+  <text x="745" y="49" text-anchor="end" font-family="monospace" font-size="10" fill="#6F6A5E">SYNCED 100%</text>
+
+  <!-- Left Sidebar (Documents & Graph) -->
+  <rect x="25" y="65" width="180" height="410" fill="#F8F2DF" />
+  <line x1="205" y1="65" x2="205" y2="475" stroke="#DCD6C3" stroke-width="1" />
+
+  <text x="45" y="95" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2" fill="#6F6A5E">KNOWLEDGE NODES</text>
+  
+  <!-- File list items -->
+  <rect x="35" y="110" width="155" height="28" rx="4" fill="#EDE8D7" stroke="#DCD6C3" stroke-width="1"/>
+  <text x="48" y="128" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#242420">✦ Distributed Systems</text>
+  
+  <text x="48" y="160" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">◦ Consensus Protocols</text>
+  <text x="48" y="190" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">◦ Spatial Graph Logic</text>
+  <text x="48" y="220" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">◦ Memory Optimization</text>
+  <text x="48" y="250" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">◦ Editorial Typography</text>
+
+  <!-- Mini Graph Widget in Sidebar -->
+  <line x1="35" y1="280" x2="195" y2="280" stroke="#DCD6C3" stroke-width="1" />
+  <text x="45" y="305" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" letter-spacing="1" fill="#6F6A5E">SPATIAL TOPOLOGY</text>
+  
+  <!-- Mini Graph Nodes -->
+  <line x1="75" y1="360" x2="120" y2="330" stroke="#DCD6C3" stroke-width="1.2"/>
+  <line x1="120" y1="330" x2="160" y2="370" stroke="#DCD6C3" stroke-width="1.2"/>
+  <line x1="120" y1="330" x2="105" y2="405" stroke="#DCD6C3" stroke-width="1.2"/>
+  <circle cx="75" cy="360" r="5" fill="#242420"/>
+  <circle cx="120" cy="330" r="7" fill="#8C6D4F"/>
+  <circle cx="160" cy="370" r="4" fill="#242420"/>
+  <circle cx="105" cy="405" r="5" fill="#6F6A5E"/>
+
+  <!-- Main Canvas Content Area -->
+  <g transform="translate(230, 85)">
+    <!-- Document Title & Meta -->
+    <text x="0" y="30" font-family="serif, -apple-system" font-size="24" font-weight="700" fill="#242420">Foundations of Local-First Architecture</text>
+    <text x="0" y="55" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" letter-spacing="1" fill="#6F6A5E">SEPTEMBER 2026 · 12 MIN READ · 14 CONNECTED REFS</text>
+    <line x1="0" y1="72" x2="520" y2="72" stroke="#DCD6C3" stroke-width="1" />
+
+    <!-- Article Paragraph Lines (clean editorial mock) -->
+    <text x="0" y="105" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" line-height="22" fill="#242420">Data ownership should belong intrinsically to the user client. By leveraging SQLite</text>
+    <text x="0" y="128" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#242420">compiled to WebAssembly and synchronized over append-only CRDT journals, applications</text>
+    <text x="0" y="151" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#242420">guarantee instant interactive feedback with zero cloud dependency.</text>
+
+    <!-- Interactive Interactive Blockquote / Callout -->
+    <rect x="0" y="180" width="515" height="74" rx="4" fill="#EDE8D7" stroke="#DCD6C3" stroke-width="1"/>
+    <line x1="0" y1="180" x2="0" y2="254" stroke="#242420" stroke-width="4" />
+    <text x="25" y="210" font-family="serif" font-style="italic" font-size="14" fill="#242420">"Software that runs without internet is software that endures across decades."</text>
+    <text x="25" y="235" font-family="monospace" font-size="10" letter-spacing="0.5" fill="#6F6A5E">CRDT-SYNC-SPECIFICATION § 4.2</text>
+
+    <!-- Node Cards / Graph Cards in Main View -->
+    <g transform="translate(0, 275)">
+      <rect x="0" y="0" width="245" height="90" rx="4" fill="#FCF6E5" stroke="#DCD6C3" stroke-width="1" />
+      <text x="16" y="25" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#242420">Node: Conflict-Free Resolution</text>
+      <text x="16" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">State merges deterministically across peers</text>
+      <text x="16" y="72" font-family="monospace" font-size="10" fill="#8C6D4F">STATE: CONVERGED · 0.4ms</text>
+
+      <rect x="270" y="0" width="245" height="90" rx="4" fill="#FCF6E5" stroke="#DCD6C3" stroke-width="1" />
+      <text x="286" y="25" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" fill="#242420">Node: IndexedDB Cache</text>
+      <text x="286" y="48" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#6F6A5E">Direct binary blob paging with index trees</text>
+      <text x="286" y="72" font-family="monospace" font-size="10" fill="#8C6D4F">CAPACITY: 42.8 MB / UNLIMITED</text>
+    </g>
+  </g>
+</svg>
+
