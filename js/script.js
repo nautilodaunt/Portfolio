@@ -97,19 +97,16 @@ const projects = [
     shortDescription: "A visual task board app that combines smart sorting with actionable analytics to help you optimize your workflow.",
     description: "LearnBoard is a task management web application designed to help users organize and prioritize their work. It supports drag-and-drop task organization, deadlines, priority levels, browser-based persistence, a built-in Pomodoro timer and automated scheduling based on user-defined constraints.",
     features: [
-   "JavaScript frontend with a Node.js and Express backend",
-  "OpenRouter API integration for AI-powered task prioritization",
-  "Structured JSON parsing to automatically update task priorities",
-  "Browser-based persistence and constraint-driven scheduling logic"
-
+      "JavaScript frontend with a Node.js and Express backend",
+      "OpenRouter API integration for AI-powered task prioritization",
+      "Structured JSON parsing to automatically update task priorities",
+      "Browser-based persistence and constraint-driven scheduling logic"
     ],
     technologies: ["JavaScript", "HTML", "CSS", "Express.js", "Openrouter API"],
     image: [
       "./assets/projects/PT1.gif",
       "./assets/projects/PT2.gif",
-
       "./assets/projects/PT3.gif",
-
       "./assets/projects/PT4.gif"
     ],
     github: "https://github.com/nautilodaunt/prioritytask",
@@ -117,66 +114,109 @@ const projects = [
   }
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderProjects();
-  initNavigation();
-  initModal();
-  initScrollAnimations();
-  initBackToTop();
-  initGifCycling();
-});
+// ---------------------------------------------------------------------------
+// New Art Portfolio Data
+// ---------------------------------------------------------------------------
+const artProjects = [
+  {
+    id: "digital-sketches",
+    index: "01",
+    title: "Digital Sketches",
+    tagline: "Explorations in line, form, and color",
+    shortDescription: "A collection of hand‑drawn digital sketches created with Procreate.",
+    description: "These sketches explore the interplay of light, shadow, and texture in everyday objects. Each piece is built from a single brushstroke workflow, emphasizing spontaneity and expressive line work.",
+    features: [
+      "High‑resolution PNG exports (300 dpi)",
+      "Layered PSD files for remixing",
+      "Limited color palette for visual cohesion"
+    ],
+    technologies: ["Procreate", "Adobe Photoshop"],
+    image: "./assets/profile/DUBMAHH CATS.png",
+    github: "",
+    demo: ""
+  },
+  {
+    id: "3d-models",
+    index: "02",
+    title: "3D Models",
+    tagline: "Low‑poly assets for games and visualizations",
+    shortDescription: "A series of stylized low‑poly models crafted in Blender.",
+    description: "These models are designed for real‑time rendering, featuring clean topology, UV‑unwrapped textures, and PBR material setups. Ideal for indie games, AR experiences, and rapid prototyping.",
+    features: [
+      "OBJ & GLTF export formats",
+      "PBR‑ready material library",
+      "Optimized for < 10 k triangles per model"
+    ],
+    technologies: ["Blender", "Substance Painter"],
+    image: "./assets/profile/DUBMAHH CATS1.png",
+    github: "",
+    demo: ""
+  },
+  {
+    id: "illustration-series",
+    index: "03",
+    title: "Illustration Series",
+    tagline: "Narrative illustrations inspired by marine biology",
+    shortDescription: "A series of detailed illustrations blending scientific accuracy with artistic flair.",
+    description: "Each illustration combines meticulous research on marine organisms with a stylized visual language, aiming to educate and inspire curiosity about ocean life.",
+    features: [
+      "Print‑ready PDF (CMYK, 300 dpi)",
+      "Accompanying research notes",
+      "Limited edition signed prints"
+    ],
+    technologies: ["Clip Studio Paint", "Adobe Illustrator"],
+    image: "./assets/profile/nautilodaunt1.png",
+    github: "",
+    demo: ""
+  }
+];
 
-function initGifCycling() {
-  setInterval(() => {
-    document.querySelectorAll('.gif-cycle').forEach(img => {
-      const images = JSON.parse(img.getAttribute('data-images') || '[]');
-      if (images.length > 1) {
-        let idx = parseInt(img.getAttribute('data-current-index') || '0');
-        idx = (idx + 1) % images.length;
-        img.setAttribute('data-current-index', idx);
-        img.src = images[idx];
-      }
-    });
-  }, 3000);
-}
+// ---------------------------------------------------------------------------
+// Rendering Functions
+// ---------------------------------------------------------------------------
 
-function renderProjects() {
-  const container = document.getElementById("projects-container");
+function renderPortfolio(containerId, dataArray) {
+  const container = document.getElementById(containerId);
   if (!container) return;
 
-  container.innerHTML = projects.map((project, idx) => {
-    const techTags = project.technologies
+  container.innerHTML = dataArray.map((item) => {
+    const techTags = item.technologies
       .map(t => `<span class="tech-tag">${escapeHtml(t)}</span>`)
       .join("");
-    
-    const imageSrc = Array.isArray(project.image) ? project.image[0] : project.image;
-    const imagesData = Array.isArray(project.image) ? JSON.stringify(project.image) : JSON.stringify([project.image]);
+
+    const imageSrc = Array.isArray(item.image) ? item.image[0] : item.image;
+    const imagesData = Array.isArray(item.image) ? JSON.stringify(item.image) : JSON.stringify([item.image]);
 
     return `
-      <article class="project-item reveal" data-project-id="${project.id}">
-        <div class="project-image-container" tabindex="0" role="button" aria-label="View details for ${escapeHtml(project.title)}">
+      <article class="project-item reveal" data-project-id="${item.id}">
+        <div class="project-image-container" tabindex="0" role="button" aria-label="View details for ${escapeHtml(item.title)}">
           <div class="project-image-wrapper">
-            <img src="${imageSrc}" data-images='${imagesData}' data-current-index="0" alt="${escapeHtml(project.title)} screenshot preview" class="project-image gif-cycle" loading="lazy" />
+            <img src="${imageSrc}" data-images='${imagesData}' data-current-index="0" alt="${escapeHtml(item.title)} screenshot preview" class="project-image gif-cycle" loading="lazy" />
           </div>
           <span class="project-preview-badge">EXPAND DETAILS</span>
         </div>
 
         <div class="project-text-container">
-          <span class="project-number reveal" data-delay="1">${project.index} // PORTFOLIO</span>
-          <h3 class="project-title reveal" data-delay="2">${escapeHtml(project.title)}</h3>
-          <p class="project-tagline reveal" data-delay="3">${escapeHtml(project.tagline)}</p>
-          <p class="project-description reveal" data-delay="4">${escapeHtml(project.shortDescription)}</p>
+          <span class="project-number reveal" data-delay="1">${item.index} // PORTFOLIO</span>
+          <h3 class="project-title reveal" data-delay="2">${escapeHtml(item.title)}</h3>
+          <p class="project-tagline reveal" data-delay="3">${escapeHtml(item.tagline)}</p>
+          <p class="project-description reveal" data-delay="4">${escapeHtml(item.shortDescription)}</p>
           <div class="project-tech-list reveal" data-delay="5">
             ${techTags}
           </div>
 
           <div class="project-actions reveal" data-delay="6">
-            <button class="btn-text-link view-project-btn" data-project-id="${project.id}" type="button">
-              View Project <span></span>
+            <button class="btn-text-link view-project-btn" data-project-id="${item.id}" type="button">
+              View Details <span></span>
             </button>
-            ${project.github ? `
-              <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="GitHub repository for ${escapeHtml(project.title)}">
+            ${item.github ? `
+              <a href="${item.github}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="Source repository for ${escapeHtml(item.title)}">
                 Code <span></span>
+              </a>
+            ` : ""}
+            ${item.demo ? `
+              <a href="${item.demo}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="Live demo for ${escapeHtml(item.title)}">
+                Demo <span></span>
               </a>
             ` : ""}
           </div>
@@ -185,11 +225,12 @@ function renderProjects() {
     `;
   }).join("");
 
+  // Attach event listeners for opening the modal
   container.querySelectorAll(".project-item").forEach(item => {
     const projectId = item.getAttribute("data-project-id");
     const imageContainer = item.querySelector(".project-image-container");
     const viewBtn = item.querySelector(".view-project-btn");
-    
+
     const openHandler = () => openProjectModal(projectId, item);
 
     if (imageContainer) {
@@ -207,6 +248,19 @@ function renderProjects() {
     }
   });
 }
+
+// Specific wrappers for readability
+function renderProjects() {
+  renderPortfolio("projects-container", projects);
+}
+
+function renderArtPortfolio() {
+  renderPortfolio("art-container", artProjects);
+}
+
+// ---------------------------------------------------------------------------
+// Modal Logic (unchanged, but now works for both projects and art)
+// ---------------------------------------------------------------------------
 
 let activeModalTrigger = null;
 
@@ -233,7 +287,7 @@ function initModal() {
 }
 
 function openProjectModal(projectId, sourceItem = null) {
-  const project = projects.find(p => p.id === projectId);
+  const project = projects.concat(artProjects).find(p => p.id === projectId);
   const modal = document.getElementById("project-modal");
   if (!project || !modal) return;
   activeModalTrigger = document.activeElement;
@@ -378,6 +432,10 @@ function closeModal() {
       animation.cancel(); 
     });
 }
+
+// ---------------------------------------------------------------------------
+// Remaining initialization (navigation, scroll animations, etc.)
+// ---------------------------------------------------------------------------
 
 function initNavigation() {
   const header = document.querySelector(".site-header");
@@ -579,9 +637,36 @@ function initBackToTop() {
   });
 }
 
+function initGifCycling() {
+  setInterval(() => {
+    document.querySelectorAll('.gif-cycle').forEach(img => {
+      const images = JSON.parse(img.getAttribute('data-images') || '[]');
+      if (images.length > 1) {
+        let idx = parseInt(img.getAttribute('data-current-index') || '0');
+        idx = (idx + 1) % images.length;
+        img.setAttribute('data-current-index', idx);
+        img.src = images[idx];
+      }
+    });
+  }, 3000);
+}
+
 function escapeHtml(str) {
   if (!str) return "";
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
 }
+
+// ---------------------------------------------------------------------------
+// DOMContentLoaded – initialize everything
+// ---------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  renderProjects();
+  renderArtPortfolio();
+  initNavigation();
+  initModal();
+  initScrollAnimations();
+  initBackToTop();
+  initGifCycling();
+});
