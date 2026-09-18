@@ -110,7 +110,7 @@ const projects = [
       "./assets/projects/PT4.gif"
     ],
     github: "https://github.com/nautilodaunt/prioritytask",
-    demo: "https://github.com/nautilodaunt/PriorityTask/"
+    demo: "https://prioritytask.onrender.com/"
   }
 ];
 

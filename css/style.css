@@ -25,14 +25,14 @@
   --accent-soft: rgba(140, 109, 79, 0.12);
 
   /* Dark Tan Grounding Palette (Contact & Footer - Darker Tan tone) */
-  --bg-dark-tan: #30261E; /* Rich deep roasted tan/espresso */
-  --surface-dark-tan: #3D3227; /* Elevated warm dark tan card */
-  --surface-dark-tan-hover: #4A3E31;
-  --border-dark-tan: #544638; /* Crisp warm hairline border */
-  --text-dark-tan-primary: #F7F2E6; /* Warm light cream */
-  --text-dark-tan-secondary: #C2B6A6; /* Warm muted tan */
-  --text-dark-tan-muted: #8F8374;
-  --accent-dark-tan: #D8AC7B; /* Warm golden bronze */
+  --bg-dark-tan: #323b06; 
+  --surface-dark-tan: #323b06; 
+  --surface-dark-tan-hover: #273b06;
+  --border-dark-tan: #cbcf88; 
+  --text-dark-tan-primary: #F7F2E6; 
+  --text-dark-tan-secondary: #fbf5c9; 
+  --text-dark-tan-muted: #8ba36b;
+  --accent-dark-tan: #e7eaa3;   
 
   /* Typography */
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -875,7 +875,7 @@ ul, ol {
 }
 
 .project-image-wrapper {
-  aspect-ratio: 16 / 10;
+
   overflow: hidden;
   position: relative;
 }
@@ -1090,17 +1090,18 @@ ul, ol {
 }
 
 .modal-image-wrapper {
-  aspect-ratio: 16 / 10;
+  object-fit: contain;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  overflow: hidden;
+
   background: var(--background);
 }
 
 .modal-image-wrapper img {
   width: 100%;
+   object-fit: contain;
   height: 100%;
-  object-fit: cover;
+ 
 }
 
 .modal-section-title {
@@ -1147,6 +1148,148 @@ ul, ol {
   border-top: 1px solid var(--border);
   flex-wrap: wrap;
 }
+
+
+/* =========================================================
+   PROJECT → MODAL TRANSITION
+   ========================================================= */
+
+.project-transition-clone {
+  position: fixed;
+  z-index: 10000;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  background: var(--background);
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    0 20px 50px rgba(36, 36, 32, 0.18);
+
+  will-change:
+    left,
+    top,
+    width,
+    height,
+    border-radius;
+}
+
+
+.project-transition-clone img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* Modal exists but stays hidden while
+   its final coordinates are measured */
+
+.project-modal.is-preparing {
+  opacity: 0;
+
+  transform:
+    scale(0.98)
+    translateY(12px);
+}
+
+
+/* Backdrop */
+.project-modal.is-closing::backdrop {
+  opacity: 0;
+}
+
+
+/* -------------------------
+   Modal content entrance
+   ------------------------- */
+
+@keyframes modal-content-enter {
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+.project-modal.is-opening .modal-header {
+  animation:
+    modal-content-enter
+    0.45s
+    var(--ease-editorial)
+    both;
+
+  animation-delay: 0.08s;
+}
+
+
+.project-modal.is-opening
+.modal-body > *:not(.modal-image-wrapper) {
+
+  animation:
+    modal-content-enter
+    0.5s
+    var(--ease-editorial)
+    both;
+}
+
+
+.project-modal.is-opening
+.modal-body > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+
+.project-modal.is-opening
+.modal-body > *:nth-child(3) {
+  animation-delay: 0.18s;
+}
+
+
+.project-modal.is-opening
+.modal-body > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+
+.project-modal.is-opening
+.modal-body > *:nth-child(5) {
+  animation-delay: 0.30s;
+}
+
+
+@starting-style {
+
+  .project-modal[open] {
+    opacity: 0;
+
+    transform:
+      scale(0.96)
+      translateY(18px);
+  }
+
+  .project-modal[open]::backdrop {
+    opacity: 0;
+  }
+
+}
+
+
+
+
 
 /* --------------------------------------------------------------------------
    SKILLS SECTION (Light Cream Background #FCF6E5)
@@ -1274,10 +1417,11 @@ ul, ol {
 }
 
 .contact-headline {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: clamp(3rem, 7.5vw, 6.2rem);
   font-weight: 600;
   line-height: 1;
+  font-weight: bolder;
   letter-spacing: -0.03em;
   color: var(--text-dark-tan-primary);
 }
