@@ -1,12 +1,3 @@
-/**
- * NAUTILODAUNT — PORTFOLIO SCRIPT & DATA ARCHITECTURE
- * Fully static, zero dependencies, GitHub Pages compatible.
- */
-
-/* ==========================================================================
-   PROJECT DATA STORE
-   Easily add, modify, or reorder projects here.
-   ========================================================================== */
 const projects = [
   {
     id: "aetheria",
@@ -99,39 +90,56 @@ const projects = [
     demo: ""
   },
   {
-    id: "komorebi",
+    id: "PriorityTask",
     index: "06",
-    title: "Komorebi",
-    tagline: "Distraction-Free Technical Document & Whitepaper Reader",
-    shortDescription: "An editorial reading environment crafted for deep research whitepapers, mathematical notation, and scholarly marginalia.",
-    description: "Komorebi brings the warmth of Swiss typography and traditional book design to digital technical papers. It features dual-column layouts with dedicated side marginalia, native LaTeX equation rendering, customizable reading rulers, and distraction-free typography.",
+    title: "PriorityTask",
+    tagline: "Distraction free planner",
+    shortDescription: "A visual task board app that combines smart sorting with actionable analytics to help you optimize your workflow.",
+    description: "LearnBoard is a task management web application designed to help users organize and prioritize their work. It supports drag-and-drop task organization, deadlines, priority levels, browser-based persistence, a built-in Pomodoro timer and automated scheduling based on user-defined constraints.",
     features: [
-      "High-fidelity mathematical typesetting with inline and display formula support",
-      "Side marginalia system preserving scholarly annotations beside corresponding paragraphs",
-      "Reading progress estimation and persistent scroll state across browser sessions",
-      "Accessible high-contrast cream theme exceeding WCAG AAA standards"
+   "JavaScript frontend with a Node.js and Express backend",
+  "OpenRouter API integration for AI-powered task prioritization",
+  "Structured JSON parsing to automatically update task priorities",
+  "Browser-based persistence and constraint-driven scheduling logic"
+
     ],
-    technologies: ["JavaScript", "HTML5", "CSS3", "Typography"],
-    image: "./assets/projects/komorebi.svg",
-    github: "https://github.com/nautilodaunt/komorebi",
-    demo: "https://nautilodaunt.github.io/komorebi"
+    technologies: ["JavaScript", "HTML", "CSS", "Express.js", "Openrouter API"],
+    image: [
+      "./assets/projects/PT1.gif",
+      "./assets/projects/PT2.gif",
+
+      "./assets/projects/PT3.gif",
+
+      "./assets/projects/PT4.gif"
+    ],
+    github: "https://github.com/nautilodaunt/prioritytask",
+    demo: "https://github.com/nautilodaunt/PriorityTask/"
   }
 ];
 
-/* ==========================================================================
-   APP CONTROLLER & DOM INITIALIZATION
-   ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   initNavigation();
   initModal();
   initScrollAnimations();
   initBackToTop();
+  initGifCycling();
 });
 
-/* --------------------------------------------------------------------------
-   PROJECT RENDERING
-   -------------------------------------------------------------------------- */
+function initGifCycling() {
+  setInterval(() => {
+    document.querySelectorAll('.gif-cycle').forEach(img => {
+      const images = JSON.parse(img.getAttribute('data-images') || '[]');
+      if (images.length > 1) {
+        let idx = parseInt(img.getAttribute('data-current-index') || '0');
+        idx = (idx + 1) % images.length;
+        img.setAttribute('data-current-index', idx);
+        img.src = images[idx];
+      }
+    });
+  }, 3000);
+}
+
 function renderProjects() {
   const container = document.getElementById("projects-container");
   if (!container) return;
@@ -140,14 +148,17 @@ function renderProjects() {
     const techTags = project.technologies
       .map(t => `<span class="tech-tag">${escapeHtml(t)}</span>`)
       .join("");
+    
+    const imageSrc = Array.isArray(project.image) ? project.image[0] : project.image;
+    const imagesData = Array.isArray(project.image) ? JSON.stringify(project.image) : JSON.stringify([project.image]);
 
     return `
       <article class="project-item reveal" data-project-id="${project.id}">
         <div class="project-image-container" tabindex="0" role="button" aria-label="View details for ${escapeHtml(project.title)}">
           <div class="project-image-wrapper">
-            <img src="${project.image}" alt="${escapeHtml(project.title)} screenshot preview" class="project-image" loading="lazy" />
+            <img src="${imageSrc}" data-images='${imagesData}' data-current-index="0" alt="${escapeHtml(project.title)} screenshot preview" class="project-image gif-cycle" loading="lazy" />
           </div>
-          <span class="project-preview-badge">EXPAND DETAILS ↗</span>
+          <span class="project-preview-badge">EXPAND DETAILS</span>
         </div>
 
         <div class="project-text-container">
@@ -155,34 +166,31 @@ function renderProjects() {
           <h3 class="project-title reveal" data-delay="2">${escapeHtml(project.title)}</h3>
           <p class="project-tagline reveal" data-delay="3">${escapeHtml(project.tagline)}</p>
           <p class="project-description reveal" data-delay="4">${escapeHtml(project.shortDescription)}</p>
-          
           <div class="project-tech-list reveal" data-delay="5">
             ${techTags}
           </div>
 
           <div class="project-actions reveal" data-delay="6">
             <button class="btn-text-link view-project-btn" data-project-id="${project.id}" type="button">
-              View Project <span class="link-arrow">→</span>
+              View Project <span></span>
             </button>
             ${project.github ? `
               <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="GitHub repository for ${escapeHtml(project.title)}">
-                Code <span class="link-arrow">↗</span>
+                Code <span></span>
               </a>
             ` : ""}
           </div>
         </div>
       </article>
     `;
-
   }).join("");
 
-  // Attach click events to project cards and buttons
   container.querySelectorAll(".project-item").forEach(item => {
     const projectId = item.getAttribute("data-project-id");
     const imageContainer = item.querySelector(".project-image-container");
     const viewBtn = item.querySelector(".view-project-btn");
-
-    const openHandler = () => openProjectModal(projectId);
+    
+    const openHandler = () => openProjectModal(projectId, item);
 
     if (imageContainer) {
       imageContainer.addEventListener("click", openHandler);
@@ -200,137 +208,186 @@ function renderProjects() {
   });
 }
 
-/* --------------------------------------------------------------------------
-   PROJECT DETAIL MODAL
-   -------------------------------------------------------------------------- */
 let activeModalTrigger = null;
 
 function initModal() {
   const modal = document.getElementById("project-modal");
   const closeBtn = document.getElementById("modal-close-btn");
+
   if (!modal) return;
 
   if (closeBtn) {
-    closeBtn.addEventListener("click", () => closeModal());
+    closeBtn.addEventListener("click", closeModal);
   }
 
-  // Close when clicking modal backdrop
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeModal();
     }
   });
 
-  // Handle Escape key
-  modal.addEventListener("cancel", () => {
-    document.body.style.overflow = "";
-    if (activeModalTrigger) {
-      activeModalTrigger.focus();
-    }
+  modal.addEventListener("cancel", (e) => {
+    e.preventDefault(); 
+    closeModal();
   });
 }
 
-function openProjectModal(projectId) {
+function openProjectModal(projectId, sourceItem = null) {
   const project = projects.find(p => p.id === projectId);
   const modal = document.getElementById("project-modal");
   if (!project || !modal) return;
-
-  // Save current active element to restore focus on close
   activeModalTrigger = document.activeElement;
 
-  // Populate modal contents
   document.getElementById("modal-index").textContent = `${project.index} // ARCHIVE`;
   document.getElementById("modal-title").textContent = project.title;
   
   const modalImg = document.getElementById("modal-image");
-  modalImg.src = project.image;
+  const imageSrc = Array.isArray(project.image) ? project.image[0] : project.image;
+  const imagesData = Array.isArray(project.image) ? JSON.stringify(project.image) : JSON.stringify([project.image]);
+  
+  modalImg.src = imageSrc;
   modalImg.alt = `${project.title} screenshot`;
-
+  modalImg.setAttribute('data-images', imagesData);
+  modalImg.setAttribute('data-current-index', '0');
+  modalImg.classList.add('gif-cycle');
+  
   document.getElementById("modal-description").textContent = project.description;
 
-  // Features list
   const featuresContainer = document.getElementById("modal-features");
   featuresContainer.innerHTML = project.features.map(f => `
     <div class="modal-feature-item">
-      <span class="modal-feature-bullet">✦</span>
+      <span class="modal-feature-bullet"></span>
       <span>${escapeHtml(f)}</span>
     </div>
   `).join("");
 
-  // Tech list
   const techContainer = document.getElementById("modal-tech-list");
   techContainer.innerHTML = project.technologies.map(t => `
     <span class="tech-tag">${escapeHtml(t)}</span>
   `).join("");
 
-  // Action links
   const actionsContainer = document.getElementById("modal-actions");
   let actionButtonsHtml = "";
-
   if (project.demo) {
     actionButtonsHtml += `
       <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
-        Live Demo <span class="btn-arrow btn-arrow--diagonal">↗</span>
+        Live Demo <span class="btn-arrow btn-arrow--diagonal"></span>
       </a>
     `;
   }
-
   if (project.github) {
     actionButtonsHtml += `
       <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
-        Source Code <span class="btn-arrow btn-arrow--diagonal">↗</span>
+        Source Code <span class="btn-arrow btn-arrow--diagonal"></span>
       </a>
     `;
   }
-
   actionsContainer.innerHTML = actionButtonsHtml;
 
-  // Show modal with native dialog API
-  if (typeof modal.showModal === "function") {
-    modal.showModal();
-  } else {
-    modal.setAttribute("open", "true");
+  const source = sourceItem?.querySelector(".project-image-container");
+  const sourceRect = source?.getBoundingClientRect();
+
+  modal.showModal();
+  document.body.style.overflow = "hidden";
+
+  const modalBody = modal.querySelector(".modal-body");
+  if (modalBody) {
+    modalBody.scrollTop = 0;
   }
 
-  document.body.style.overflow = "hidden";
-  
-  // Focus close button for accessibility
-  const closeBtn = document.getElementById("modal-close-btn");
-  if (closeBtn) {
-    closeBtn.focus();
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion || !sourceRect) {
+    document.getElementById("modal-close-btn")?.focus();
+    return;
   }
+
+  const modalRect = modal.getBoundingClientRect();
+  const sourceCenterX = sourceRect.left + sourceRect.width / 2;
+  const sourceCenterY = sourceRect.top + sourceRect.height / 2;
+  const modalCenterX = modalRect.left + modalRect.width / 2;
+  const modalCenterY = modalRect.top + modalRect.height / 2;
+  const moveX = sourceCenterX - modalCenterX;
+  const moveY = sourceCenterY - modalCenterY;
+
+  const startScale = Math.max(0.35, Math.min(0.85, sourceRect.width / modalRect.width));
+
+  modal.classList.add("is-opening");
+  const animation = modal.animate([
+    {
+      opacity: 0,
+      transform: `translate(${moveX}px, ${moveY}px) scale(${startScale})`
+    },
+    {
+      opacity: 1,
+      transform: "translate(0, 0) scale(1)"
+    }
+  ], {
+    duration: 500, 
+    easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+  });
+
+  animation.finished
+    .catch(() => {})
+    .finally(() => {
+      animation.cancel(); 
+      modal.classList.remove("is-opening");
+      document.getElementById("modal-close-btn")?.focus();
+    });
 }
 
 function closeModal() {
   const modal = document.getElementById("project-modal");
-  if (!modal) return;
+  if (!modal || !modal.open) return;
+  if (modal.classList.contains("is-closing")) return;
 
-  if (typeof modal.close === "function") {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const finishClose = () => {
     modal.close();
-  } else {
-    modal.removeAttribute("open");
+    modal.classList.remove("is-closing", "is-opening");
+    document.body.style.overflow = "";
+    if (activeModalTrigger) {
+      activeModalTrigger.focus();
+    }
+  };
+
+  if (reducedMotion) {
+    finishClose();
+    return;
   }
 
-  document.body.style.overflow = "";
+  modal.classList.add("is-closing");
+  const animation = modal.animate([
+    {
+      opacity: 1,
+      transform: "translateY(0) scale(1)"
+    },
+    {
+      opacity: 0,
+      transform: "translateY(18px) scale(0.96)"
+    }
+  ], {
+    duration: 250,
+    easing: "cubic-bezier(0.4, 0, 1, 1)"
+  });
 
-  if (activeModalTrigger) {
-    activeModalTrigger.focus();
-  }
+  animation.finished
+    .catch(() => {})
+    .finally(() => {
+      finishClose(); 
+      animation.cancel(); 
+    });
 }
 
-/* --------------------------------------------------------------------------
-   NAVIGATION & SCROLL INTERACTIONS
-   -------------------------------------------------------------------------- */
 function initNavigation() {
   const header = document.querySelector(".site-header");
   const mobileToggle = document.querySelector(".mobile-nav-toggle");
   const mobileMenu = document.querySelector(".mobile-menu");
   const navLinks = document.querySelectorAll(".nav-link");
-
+  
   const progressBar = document.getElementById("scroll-progress-bar");
   const heroSpiral = document.querySelector(".hero-deco-spiral");
 
-  // Sticky header border, reading progress, and dark tan theme transition on scroll
   const updateHeaderTheme = () => {
     const contactSec = document.getElementById("contact");
     if (!contactSec || !header) return;
@@ -364,7 +421,6 @@ function initNavigation() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const vh = window.innerHeight;
 
-    // Interactive zoom & shift on project images as they pass through viewport
     const projectImages = document.querySelectorAll(".project-item.is-revealed .project-image");
     projectImages.forEach(img => {
       const rect = img.getBoundingClientRect();
@@ -376,7 +432,6 @@ function initNavigation() {
       }
     });
 
-    // Interactive zoom on About portrait
     const aboutImg = document.querySelector(".about-visual-col.is-revealed .about-image-wrapper img");
     if (aboutImg) {
       const rect = aboutImg.getBoundingClientRect();
@@ -411,7 +466,6 @@ function initNavigation() {
   window.addEventListener("scroll", handleScroll, { passive: true });
   handleScroll();
 
-  // Mobile menu toggle
   if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener("click", () => {
       const isExpanded = mobileToggle.getAttribute("aria-expanded") === "true";
@@ -419,7 +473,6 @@ function initNavigation() {
       mobileMenu.classList.toggle("is-open", !isExpanded);
     });
 
-    // Close mobile menu when clicking nav link
     mobileMenu.querySelectorAll(".nav-link").forEach(link => {
       link.addEventListener("click", () => {
         mobileToggle.setAttribute("aria-expanded", "false");
@@ -428,7 +481,6 @@ function initNavigation() {
     });
   }
 
-  // Active link highlighter via IntersectionObserver
   const sections = document.querySelectorAll("section[id]");
   if ("IntersectionObserver" in window && sections.length > 0) {
     const observer = new IntersectionObserver((entries) => {
@@ -453,9 +505,6 @@ function initNavigation() {
   }
 }
 
-/* --------------------------------------------------------------------------
-   SCROLL REVEAL ANIMATIONS — INSTAGRAM STYLE
-   -------------------------------------------------------------------------- */
 function initScrollAnimations() {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -468,8 +517,6 @@ function initScrollAnimations() {
     return;
   }
 
-  // ---- Per-child stagger helper ----
-  // When a container reveals, stagger its direct animate-able children
   const addChildStagger = (container) => {
     const children = container.querySelectorAll(".reveal, .contact-link-card, .pillar-item, .about-stat");
     children.forEach((child, i) => {
@@ -479,24 +526,29 @@ function initScrollAnimations() {
     });
   };
 
-  // ---- Main reveal observer ----
-  const revealObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        el.classList.add("is-revealed");
-        // Stagger children inside
-        addChildStagger(el);
-        obs.unobserve(el);
-      }
-    });
-  }, {
-    rootMargin: "0px 0px -60px 0px",
-    threshold: 0.06
+  const revealElements = document.querySelectorAll(".reveal");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+        } else {
+          entry.target.classList.remove("is-revealed");
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -5% 0px"
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
   });
 
   allRevealable.forEach(el => {
-    // Add .reveal class if not already present (for .skill-category-card, .about-content etc.)
     if (!el.classList.contains("reveal") &&
         !el.classList.contains("project-item") &&
         !el.classList.contains("about-visual-col") &&
@@ -507,8 +559,6 @@ function initScrollAnimations() {
     revealObserver.observe(el);
   });
 
-  // ---- Nested reveal elements inside project cards ----
-  // These are injected by renderProjects() with data-delay already set
   setTimeout(() => {
     document.querySelectorAll(".project-text-container .reveal").forEach(child => {
       revealObserver.observe(child);
@@ -516,9 +566,6 @@ function initScrollAnimations() {
   }, 80);
 }
 
-/* --------------------------------------------------------------------------
-   BACK TO TOP BUTTON
-   -------------------------------------------------------------------------- */
 function initBackToTop() {
   const backToTopBtn = document.querySelector(".back-to-top");
   if (!backToTopBtn) return;
@@ -532,13 +579,9 @@ function initBackToTop() {
   });
 }
 
-/* --------------------------------------------------------------------------
-   UTILITY HELPERS
-   -------------------------------------------------------------------------- */
 function escapeHtml(str) {
   if (!str) return "";
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
 }
-
