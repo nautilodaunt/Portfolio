@@ -146,7 +146,6 @@ function renderPortfolio(containerId, dataArray) {
   });
 }
 
-// Specific wrappers for readability
 function renderProjects() {
   renderPortfolio("projects-container", projects);
 }
@@ -182,7 +181,7 @@ function renderArtPortfolio() {
   let lastTime = 0;
   let remainder = 0;
   let resumeAt = 0;
-  const cruiseSpeed = 0.028; // Pixels per millisecond.
+  const cruiseSpeed = 0.028; 
   let scrollDirection = 1;
   let speed = cruiseSpeed;
   let boostRemaining = 0;
@@ -193,7 +192,7 @@ function renderArtPortfolio() {
     gallery.scrollLeft = runWidth;
   };
   const updatePosition = () => {
-    // Jump by one identical run; the visible composition stays unchanged.
+
     if (gallery.scrollLeft < runWidth) gallery.scrollLeft += runWidth;
     else if (gallery.scrollLeft >= runWidth * 2) gallery.scrollLeft -= runWidth;
   };
@@ -207,7 +206,6 @@ function renderArtPortfolio() {
     updatePosition();
   };
   const accelerate = (direction) => {
-    // Reduced-motion users retain a discrete, predictable navigation action.
     if (motion.matches) {
       move(direction);
       return;
@@ -243,8 +241,6 @@ function renderArtPortfolio() {
     lastTime = time;
     if (visible && !document.hidden && !motion.matches && !touching && time > resumeAt &&
         !gallery.querySelector(":focus-visible") && !gallery.matches(":focus-visible") && !document.getElementById("project-modal").open) {
-      // Ease toward a brief speed boost, then keep drifting in the chosen direction.
-      // Repeated clicks refresh the boost without stacking animations or jumps.
       const boost = Math.min(1, boostRemaining / 900);
       const targetSpeed = scrollDirection * (cruiseSpeed + 0.48 * boost * boost);
       speed += (targetSpeed - speed) * (1 - Math.exp(-elapsed / 140));
@@ -261,10 +257,7 @@ function renderArtPortfolio() {
   requestAnimationFrame(tick);
 }
 
-// ---------------------------------------------------------------------------
-// Modal Logic (unchanged, but now works for both projects and art)
-// ---------------------------------------------------------------------------
-
+//modals
 let activeModalTrigger = null;
 
 function initModal() {
@@ -443,10 +436,7 @@ function closeModal() {
     });
 }
 
-// ---------------------------------------------------------------------------
-// Remaining initialization (navigation, scroll animations, etc.)
-// ---------------------------------------------------------------------------
-
+//nav scroll anims etc
 function initNavigation() {
   const header = document.querySelector(".site-header");
   const mobileToggle = document.querySelector(".mobile-nav-toggle");
@@ -688,10 +678,8 @@ function escapeHtml(str) {
   div.textContent = str;
   return div.innerHTML;
 }
+//load all
 
-// ---------------------------------------------------------------------------
-// DOMContentLoaded – initialize everything
-// ---------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   renderArtPortfolio();
