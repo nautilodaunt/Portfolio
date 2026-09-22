@@ -1,97 +1,7 @@
 const projects = [
-  {
-    id: "aetheria",
-    index: "01",
-    title: "Aetheria",
-    tagline: "Local-First Markdown & Spatial Thought Canvas",
-    shortDescription: "A minimalist, low-latency markdown editor and spatial thought canvas designed for deep work and research note synthesis.",
-    description: "Aetheria is an editorial note-taking app and node-based thinking environment engineered for developers, researchers, and writers. Built around an ultra-responsive local-first architecture with sub-10ms input latency, bi-directional hyperlinking, and a distraction-free cream interface.",
-    features: [
-      "Bi-directional wiki-style linking with real-time visual graph topologies",
-      "Local-first SQLite & IndexedDB persistence with zero cloud lock-in",
-      "Custom markdown syntax highlighter with instant typographic preview",
-      "Clean export pipeline supporting publication-ready PDF, Markdown, and LaTeX"
-    ],
-    technologies: ["JavaScript", "Canvas API", "IndexedDB", "CSS3"],
-    image: "./assets/projects/aetheria.svg",
-    github: "https://github.com/nautilodaunt/aetheria",
-    demo: "https://nautilodaunt.github.io/aetheria"
-  },
-  {
-    id: "nautilus",
-    index: "02",
-    title: "Nautilus Engine",
-    tagline: "Algorithmic Procedural Terrain & Logarithmic Spirals",
-    shortDescription: "A WebGL procedural geometry engine generating elevation contours, hydraulic erosion, and nautilus shell growth simulations.",
-    description: "Nautilus Engine explores algorithmic surface modeling inspired by biological growth patterns and logarithmic spirals. It features custom multi-octave Simplex noise generators, real-time GPU hydraulic sediment transport simulation, and interactive isometric wireframe rendering.",
-    features: [
-      "Over 1,000,000 instanced triangles rendered at a locked 60 FPS in WebGL",
-      "Dynamic hydraulic erosion simulating water flow, sediment carry, and evaporation",
-      "Fibonacci logarithmic spiral growth algorithms with customizable phyllotaxis ratios",
-      "Exportable vector contour maps (SVG) and heightmaps (16-bit PNG)"
-    ],
-    technologies: ["JavaScript", "WebGL 2", "GLSL", "Linear Algebra"],
-    image: "./assets/projects/nautilus.svg",
-    github: "https://github.com/nautilodaunt/nautilus-engine",
-    demo: "https://nautilodaunt.github.io/nautilus-engine"
-  },
-  {
-    id: "vespera",
-    index: "03",
-    title: "Vespera",
-    tagline: "Circadian Sound Engine & Ambient Focus Synthesizer",
-    shortDescription: "An ambient soundscape generator and Pomodoro timer tuned to natural circadian frequencies and analog acoustics.",
-    description: "Vespera is an acoustic environment crafted to promote prolonged focus without cognitive fatigue. It synthesizes real-time binaural beats, procedural rainfall, tape flutter, and forest acoustics entirely using the Web Audio API without relying on pre-recorded audio loops.",
-    features: [
-      "Procedural pink, brown, and white noise synthesis using custom audio nodes",
-      "Circadian session planner synchronizing focus intervals with ultradian rhythm cycles",
-      "Interactive radial time dial with keyboard shortcut controls",
-      "100% offline functionality with minimal memory footprint (< 15MB)"
-    ],
-    technologies: ["JavaScript", "Web Audio API", "HTML5", "CSS Custom Properties"],
-    image: "./assets/projects/vespera.svg",
-    github: "https://github.com/nautilodaunt/vespera",
-    demo: "https://nautilodaunt.github.io/vespera"
-  },
-  {
-    id: "chroma",
-    index: "04",
-    title: "Chroma DB Explorer",
-    tagline: "High-Dimensional Vector Embedding Visualizer",
-    shortDescription: "An interactive visual inspection tool for vector embeddings, cosine distance clustering, and semantic search manifolds.",
-    description: "Chroma DB Explorer translates complex high-dimensional semantic spaces into navigable 2D/3D projections. Built for developers fine-tuning retrieval-augmented generation (RAG) pipelines and inspecting semantic similarity metrics across dense document corpora.",
-    features: [
-      "Client-side UMAP and t-SNE dimensionality reduction for up to 10,000 vectors",
-      "Interactive cosine distance neighborhood inspection with instant query matching",
-      "Real-time cluster isolation and semantic cluster naming heuristics",
-      "Direct integration with JSON and CSV embedding vectors"
-    ],
-    technologies: ["JavaScript", "Canvas 2D", "APIs", "Node.js"],
-    image: "./assets/projects/chroma.svg",
-    github: "https://github.com/nautilodaunt/chroma-explorer",
-    demo: "https://nautilodaunt.github.io/chroma-explorer"
-  },
-  {
-    id: "monolith",
-    index: "05",
-    title: "Monolith",
-    tagline: "Microservice Orchestration CLI & Telemetry Daemon",
-    shortDescription: "A lightweight terminal visualizer and orchestration tool for inspecting distributed service health, latency, and mesh topology.",
-    description: "Monolith simplifies local and cloud-native microservice management. It aggregates live stdout streams, probes gRPC/HTTP health endpoints, displays real-time p99 latency heatmaps, and automatically maps dependency graphs within an elegant terminal interface.",
-    features: [
-      "Sub-millisecond p99 latency telemetry aggregation across distributed instances",
-      "Zero-configuration service discovery using multicast DNS and Docker sockets",
-      "Interactive terminal UI with keyboard-driven filtering and log drill-down",
-      "Resilient mTLS verification with automated local certificate rotation"
-    ],
-    technologies: ["Node.js", "Express", "Bash", "Linux", "APIs"],
-    image: "./assets/projects/monolith.svg",
-    github: "https://github.com/nautilodaunt/monolith",
-    demo: ""
-  },
-  {
+   {
     id: "PriorityTask",
-    index: "06",
+    index: "02",
     title: "PriorityTask",
     tagline: "Distraction free planner",
     shortDescription: "A visual task board app that combines smart sorting with actionable analytics to help you optimize your workflow.",
@@ -111,70 +21,57 @@ const projects = [
     ],
     github: "https://github.com/nautilodaunt/prioritytask",
     demo: "https://prioritytask.onrender.com/"
-  }
-];
-
-// ---------------------------------------------------------------------------
-// New Art Portfolio Data
-// ---------------------------------------------------------------------------
-const artProjects = [
-  {
-    id: "digital-sketches",
-    index: "01",
-    title: "Digital Sketches",
-    tagline: "Explorations in line, form, and color",
-    shortDescription: "A collection of hand‑drawn digital sketches created with Procreate.",
-    description: "These sketches explore the interplay of light, shadow, and texture in everyday objects. Each piece is built from a single brushstroke workflow, emphasizing spontaneity and expressive line work.",
-    features: [
-      "High‑resolution PNG exports (300 dpi)",
-      "Layered PSD files for remixing",
-      "Limited color palette for visual cohesion"
-    ],
-    technologies: ["Procreate", "Adobe Photoshop"],
-    image: "./assets/profile/DUBMAHH CATS.png",
-    github: "",
-    demo: ""
   },
   {
-    id: "3d-models",
+    id: "nautilomation",
     index: "02",
-    title: "3D Models",
-    tagline: "Low‑poly assets for games and visualizations",
-    shortDescription: "A series of stylized low‑poly models crafted in Blender.",
-    description: "These models are designed for real‑time rendering, featuring clean topology, UV‑unwrapped textures, and PBR material setups. Ideal for indie games, AR experiences, and rapid prototyping.",
+    title: "Nautilomation",
+    tagline: "Scalable discord automation tool",
+    shortDescription: "A cloud hosted automation tool for discord. Built for reliability and convenience.",
+    description: "This project is a lightweight, time-saving automation engine built on Node.js that eliminates manual, repetitive communication by automatically sending scheduled messages and monitoring Discord channels. Deployed on a Google Cloud Platform (GCP) Compute Engine VM to ensure 24/7 reliability, the system interacts directly with the Discord REST API using Axios to bypass heavy client libraries and keep hosting overhead minimal. Users can easily customize message payloads, target specific channels, and set precise delivery intervals. Additionally, the service features a response-detection system that listens for incoming chat triggers and automates follow-up workflows, saving server administrators hours of manual supervision.",
     features: [
-      "OBJ & GLTF export formats",
-      "PBR‑ready material library",
-      "Optimized for < 10 k triangles per model"
+      "Fully scalar and code free control panel",
+      "Send different automatic messages in any discord channel",
+      "Set different delays and autoresponse messages",
+      "Custom whitelist for security" 
     ],
-    technologies: ["Blender", "Substance Painter"],
-    image: "./assets/profile/DUBMAHH CATS1.png",
-    github: "",
-    demo: ""
+    technologies: ["JavaScript", "Node.js", "Axios API", "Discord REST API"],
+    image: "./assets/projects/NM1.png",
+    github: "https://github.com/nautilodaunt/Nautilomation/tree/main",
+    demo: "https://discord.gg/xcQhbdkVJp"
   },
+  
   {
-    id: "illustration-series",
+    id: "Mining Simulator",
     index: "03",
-    title: "Illustration Series",
-    tagline: "Narrative illustrations inspired by marine biology",
-    shortDescription: "A series of detailed illustrations blending scientific accuracy with artistic flair.",
-    description: "Each illustration combines meticulous research on marine organisms with a stylized visual language, aiming to educate and inspire curiosity about ocean life.",
+    title: "Mining Simulator",
+    tagline: "Mine ores and collect rare crystals.",
+    shortDescription: "Game about progressing and mining rare materials in caves while avoiding monsters.",
+    description: "WIP heres an example of the mining VFX",
     features: [
-      "Print‑ready PDF (CMYK, 300 dpi)",
-      "Accompanying research notes",
-      "Limited edition signed prints"
+     "Amazing mining VFX",
+     "Linear progression system that invokes satisfaction",
+     "Novel exploration experience"
     ],
-    technologies: ["Clip Studio Paint", "Adobe Illustrator"],
-    image: "./assets/profile/nautilodaunt1.png",
+    technologies: ["Lua", "Roblox Studio", "Blender", "Remote Events"],
+    image: [ "./assets/projects/MG2C.gif"],
     github: "",
-    demo: ""
+    demo: "https://discord.gg/xcQhbdkVJp"
   }
+
+ 
 ];
 
-// ---------------------------------------------------------------------------
-// Rendering Functions
-// ---------------------------------------------------------------------------
+// art prtflio
+const artProjects = artworks.map((art, index) => ({
+  ...art,
+  id: `art-${index}`,
+  index: String(index + 1).padStart(2, "0"),
+  features: art.notes || [],
+  technologies: art.tools || []
+}));
 
+// rendering funcs
 function renderPortfolio(containerId, dataArray) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -207,16 +104,16 @@ function renderPortfolio(containerId, dataArray) {
 
           <div class="project-actions reveal" data-delay="6">
             <button class="btn-text-link view-project-btn" data-project-id="${item.id}" type="button">
-              View Details <span></span>
+              View Details <span class="link-arrow" aria-hidden="true">→</span>
             </button>
             ${item.github ? `
               <a href="${item.github}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="Source repository for ${escapeHtml(item.title)}">
-                Code <span></span>
+                Code <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
             ` : ""}
             ${item.demo ? `
               <a href="${item.demo}" target="_blank" rel="noopener noreferrer" class="btn-text-link" aria-label="Live demo for ${escapeHtml(item.title)}">
-                Demo <span></span>
+                Demo <span class="link-arrow" aria-hidden="true">↗</span>
               </a>
             ` : ""}
           </div>
@@ -255,7 +152,113 @@ function renderProjects() {
 }
 
 function renderArtPortfolio() {
-  renderPortfolio("art-container", artProjects);
+  const gallery = document.getElementById("art-container");
+  if (!gallery) return;
+  const count = artProjects.length;
+  document.getElementById("art-count").textContent = `${String(count).padStart(2, "0")} SELECTED WORKS`;
+  if (!count) {
+    gallery.hidden = true;
+    document.querySelector(".art-gallery-footer").hidden = true;
+    return;
+  }
+
+  // Each of three identical runs fills at least a viewport, even with one artwork.
+  const repeats = Math.max(1, Math.ceil(4 / count));
+  const run = Array.from({ length: repeats }, () => artProjects).flat();
+  gallery.innerHTML = Array.from({ length: 3 }, (_, copy) => run.map((art, index) => `
+    <button class="art-piece" type="button" data-art-index="${index % count}"
+      ${copy === 1 && index < count ? "" : 'tabindex="-1" aria-hidden="true"'}
+      aria-label="View details for ${escapeHtml(art.title)}" aria-haspopup="dialog">
+      <img src="${escapeHtml(art.image)}" alt="${escapeHtml(art.alt || art.title)}" decoding="async" />
+    </button>
+  `).join("")).join("");
+
+  const pieces = [...gallery.querySelectorAll(".art-piece")];
+  const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let touching = false;
+  let visible = false;
+  let step = 0;
+  let runWidth = 0;
+  let lastTime = 0;
+  let remainder = 0;
+  let resumeAt = 0;
+  const cruiseSpeed = 0.028; // Pixels per millisecond.
+  let scrollDirection = 1;
+  let speed = cruiseSpeed;
+  let boostRemaining = 0;
+
+  const measure = () => {
+    step = pieces[1].getBoundingClientRect().left - pieces[0].getBoundingClientRect().left;
+    runWidth = step * run.length;
+    gallery.scrollLeft = runWidth;
+  };
+  const updatePosition = () => {
+    // Jump by one identical run; the visible composition stays unchanged.
+    if (gallery.scrollLeft < runWidth) gallery.scrollLeft += runWidth;
+    else if (gallery.scrollLeft >= runWidth * 2) gallery.scrollLeft -= runWidth;
+  };
+  pieces.forEach(piece => piece.addEventListener("click", () => {
+    openProjectModal(artProjects[Number(piece.dataset.artIndex)].id, piece);
+  }));
+
+  const move = (direction) => {
+    resumeAt = performance.now() + 400;
+    gallery.scrollLeft = (Math.round(gallery.scrollLeft / step) + direction) * step;
+    updatePosition();
+  };
+  const accelerate = (direction) => {
+    // Reduced-motion users retain a discrete, predictable navigation action.
+    if (motion.matches) {
+      move(direction);
+      return;
+    }
+    scrollDirection = direction;
+    boostRemaining = 1300;
+    resumeAt = 0;
+  };
+  document.getElementById("art-prev").addEventListener("click", () => accelerate(-1));
+  document.getElementById("art-next").addEventListener("click", () => accelerate(1));
+  gallery.addEventListener("keydown", event => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === "Home" || event.key === "End") {
+      gallery.scrollLeft = runWidth + (event.key === "End" ? count - 1 : 0) * step;
+      updatePosition();
+    } else move(event.key === "ArrowRight" ? 1 : -1);
+    if (event.target.matches(".art-piece")) {
+      const index = Math.round((gallery.scrollLeft - runWidth) / step) % count;
+      pieces[run.length + (index + count) % count].focus({ preventScroll: true });
+    }
+  });
+  gallery.addEventListener("pointerdown", () => { touching = true; });
+  window.addEventListener("pointerup", () => { touching = false; resumeAt = performance.now() + 400; });
+  window.addEventListener("pointercancel", () => { touching = false; });
+  gallery.addEventListener("wheel", () => { resumeAt = performance.now() + 400; }, { passive: true });
+  gallery.addEventListener("scroll", updatePosition, { passive: true });
+  new ResizeObserver(() => { measure(); updatePosition(); }).observe(gallery);
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(gallery);
+
+  const tick = (time) => {
+    const elapsed = Math.min(time - lastTime, 50);
+    lastTime = time;
+    if (visible && !document.hidden && !motion.matches && !touching && time > resumeAt &&
+        !gallery.querySelector(":focus-visible") && !gallery.matches(":focus-visible") && !document.getElementById("project-modal").open) {
+      // Ease toward a brief speed boost, then keep drifting in the chosen direction.
+      // Repeated clicks refresh the boost without stacking animations or jumps.
+      const boost = Math.min(1, boostRemaining / 900);
+      const targetSpeed = scrollDirection * (cruiseSpeed + 0.48 * boost * boost);
+      speed += (targetSpeed - speed) * (1 - Math.exp(-elapsed / 140));
+      boostRemaining = Math.max(0, boostRemaining - elapsed);
+      remainder += elapsed * speed;
+      const pixels = Math.trunc(remainder);
+      remainder -= pixels;
+      gallery.scrollLeft += pixels;
+    }
+    requestAnimationFrame(tick);
+  };
+  measure();
+  updatePosition();
+  requestAnimationFrame(tick);
 }
 
 // ---------------------------------------------------------------------------
@@ -290,7 +293,12 @@ function openProjectModal(projectId, sourceItem = null) {
   const project = projects.concat(artProjects).find(p => p.id === projectId);
   const modal = document.getElementById("project-modal");
   if (!project || !modal) return;
-  activeModalTrigger = document.activeElement;
+  activeModalTrigger = sourceItem?.matches(".art-piece") ? sourceItem : document.activeElement;
+  const isArt = artProjects.includes(project);
+  modal.classList.toggle("art-detail", isArt);
+  document.getElementById("modal-features-title").textContent = isArt ? "Piece notes" : "Key Architectural Features";
+  document.getElementById("modal-tools-title").textContent = isArt ? "Tools & medium" : "Technologies";
+  document.getElementById("modal-close-btn").setAttribute("aria-label", isArt ? "Close artwork details" : "Close project details");
 
   document.getElementById("modal-index").textContent = `${project.index} // ARCHIVE`;
   document.getElementById("modal-title").textContent = project.title;
@@ -300,7 +308,7 @@ function openProjectModal(projectId, sourceItem = null) {
   const imagesData = Array.isArray(project.image) ? JSON.stringify(project.image) : JSON.stringify([project.image]);
   
   modalImg.src = imageSrc;
-  modalImg.alt = `${project.title} screenshot`;
+  modalImg.alt = isArt ? project.title : `${project.title} screenshot`;
   modalImg.setAttribute('data-images', imagesData);
   modalImg.setAttribute('data-current-index', '0');
   modalImg.classList.add('gif-cycle');
@@ -308,6 +316,7 @@ function openProjectModal(projectId, sourceItem = null) {
   document.getElementById("modal-description").textContent = project.description;
 
   const featuresContainer = document.getElementById("modal-features");
+  featuresContainer.parentElement.hidden = !project.features.length;
   featuresContainer.innerHTML = project.features.map(f => `
     <div class="modal-feature-item">
       <span class="modal-feature-bullet"></span>
@@ -316,6 +325,7 @@ function openProjectModal(projectId, sourceItem = null) {
   `).join("");
 
   const techContainer = document.getElementById("modal-tech-list");
+  techContainer.parentElement.hidden = !project.technologies.length;
   techContainer.innerHTML = project.technologies.map(t => `
     <span class="tech-tag">${escapeHtml(t)}</span>
   `).join("");
@@ -338,7 +348,7 @@ function openProjectModal(projectId, sourceItem = null) {
   }
   actionsContainer.innerHTML = actionButtonsHtml;
 
-  const source = sourceItem?.querySelector(".project-image-container");
+  const source = isArt ? sourceItem : sourceItem?.querySelector(".project-image-container");
   const sourceRect = source?.getBoundingClientRect();
 
   modal.showModal();
@@ -445,6 +455,7 @@ function initNavigation() {
   
   const progressBar = document.getElementById("scroll-progress-bar");
   const heroSpiral = document.querySelector(".hero-deco-spiral");
+  const portraitFade = document.querySelector(".intro-portrait-fade");
 
   const updateHeaderTheme = () => {
     const contactSec = document.getElementById("contact");
@@ -467,12 +478,30 @@ function initNavigation() {
 
   const updateHeroParallax = () => {
     if (!heroSpiral) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      heroSpiral.style.transform = "translate(-50%, -50%)";
+      return;
+    }
     if (window.scrollY < window.innerHeight * 1.6) {
       const rot = window.scrollY * 0.07;
-      const yShift = window.scrollY * 0.12;
+      const yShift = Math.min(24, window.scrollY * 0.04);
       const scale = Math.max(0.88, 1 - (window.scrollY * 0.00025));
-      heroSpiral.style.transform = `translateY(calc(-50% + ${yShift}px)) rotate(${rot}deg) scale(${scale})`;
+      heroSpiral.style.transform = `translate(-50%, calc(-50% + ${yShift}px)) rotate(${rot}deg) scale(${scale})`;
     }
+  };
+
+  const updatePortraitFade = () => {
+    if (!portraitFade) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      portraitFade.style.opacity = "";
+      return;
+    }
+
+    const bottom = portraitFade.getBoundingClientRect().bottom;
+    const fadeStart = window.innerHeight * 0.55;
+    const fadeDistance = window.innerHeight * 0.4;
+    const progress = Math.min(1, Math.max(0, (fadeStart - bottom) / fadeDistance));
+    portraitFade.style.opacity = String(1 - progress);
   };
 
   const updateScrollParallax = () => {
@@ -514,6 +543,7 @@ function initNavigation() {
         updateHeaderTheme();
         updateProgressBar();
         updateHeroParallax();
+        updatePortraitFade();
         updateScrollParallax();
         ticking = false;
       });
@@ -522,6 +552,7 @@ function initNavigation() {
   };
 
   window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleScroll, { passive: true });
   handleScroll();
 
   if (mobileToggle && mobileMenu) {
