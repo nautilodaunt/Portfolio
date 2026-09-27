@@ -400,22 +400,8 @@ ul, ol {
   color: var(--text-secondary);
   border: 1px solid var(--border);
   padding: 0.35rem 0.85rem;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--surface);
-}
-
-.nav-status__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #5D8A58;
-  display: inline-block;
-  animation: pulse-dot 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 0.5; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.15); }
 }
 
 .mobile-nav-toggle {
@@ -1875,8 +1861,7 @@ ul, ol {
     --space-2xl: 3.25rem;
   }
 
-  .site-nav,
-  .nav-status__dot {
+  .site-nav {
     display: none;
   }
 
