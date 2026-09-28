@@ -56,7 +56,7 @@ const projects = [
     technologies: ["Lua", "Roblox Studio", "Blender", "Remote Events"],
     image: [ "./assets/projects/MG2C.gif"],
     github: "",
-    demo: "https://discord.gg/xcQhbdkVJp"
+    demo: "https://www.roblox.com/games/104597782315948/Mine-for-crystals"
   }
 
  
