@@ -7,7 +7,7 @@ const artworks = [
     notes: [
      "WIP"
     ],
-    tools: ["Procreate", "Adobe Photoshop"],
+    tools: ["Clip Studio Paint"],
     image: "./assets/art/p2.png",
   },
   {
@@ -16,16 +16,16 @@ const artworks = [
     notes: [
     ""
     ],
-    tools: ["Blender", "Substance Painter"],
+    tools: ["Clip Studio Paint"],
     image: "./assets/art/nautilodaunt1.png",
   },
   {
-    title: "Illustration Series",
-    description: "Each illustration combines meticulous research on marine organisms with a stylized visual language, aiming to educate and inspire curiosity about ocean life.",
+    title: "Hachiware in a sakura forest",
+    description: "04/16/2026",
     notes: [
       ""
     ],
-    tools: ["Clip Studio Paint", "Adobe Illustrator"],
-    image: "./assets/profile/nautilodaunt1.png",
+    tools: ["Clip Studio Paint"],
+    image: "./assets/profile/hachwiare.png",
   }
 ];
