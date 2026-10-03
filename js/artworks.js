@@ -26,6 +26,6 @@ const artworks = [
       ""
     ],
     tools: ["Clip Studio Paint"],
-    image: "./assets/art/hachwiare.png",
+    image: "./assets/art/h1.png",
   }
 ];
